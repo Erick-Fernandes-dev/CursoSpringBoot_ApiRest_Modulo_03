@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,9 +43,26 @@ public class ClienteController {
         return ResponseEntity.notFound().build();//retorna o erro 404
     }
 
+    @PostMapping("/api/clientes")//serve para quando for salvar um recurso no servidor, ou seja, enviar informações que não existem lá no servidor, utiliza-se o Post.
+    @ResponseBody
+    public ResponseEntity save(@RequestBody Cliente cliente) {
+
+        Cliente clienteSalvo = this.clientes.save(cliente);
+
+        return ResponseEntity.ok(clienteSalvo);
+
+
+
+
+
+    };
+
     /*
      * @RequestMapping --:> 
      * responseEntity --> e um objeto que ele representa o corpo da resposta
+     * 
+     * @RequestBody --> é quando a gente recebe uma requisição, ou seja, o que vai receber
+     * @ResonseBody --> é quando a gente retorna uma resposta, ou seja, o que vai retornar
      *
      */
 
