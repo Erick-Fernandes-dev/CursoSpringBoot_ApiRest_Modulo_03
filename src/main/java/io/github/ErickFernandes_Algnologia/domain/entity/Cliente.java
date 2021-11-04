@@ -19,7 +19,7 @@ public class Cliente {
     private String nome;
 
     @JsonIgnore//ele vai ignorar totalmente essa propriedade no formato Json
-    @OneToMany( mappedBy = "cliente" , fetch = FetchType.LAZY )
+    @OneToMany( mappedBy = "cliente" , fetch = FetchType.LAZY )//um para muitos
     private Set<Pedido> pedidos;
 
     public Cliente() {

@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ import io.github.ErickFernandes_Algnologia.domain.entity.Cliente;
 import io.github.ErickFernandes_Algnologia.domain.repository.Clientes;
 
 @Controller
-// @RequestMapping("/api/clientes")
+//@RequestMapping("/api/clientes")
 public class ClienteController {
 
     private Clientes clientes;
@@ -54,6 +55,8 @@ public class ClienteController {
 
     };
 
+    @DeleteMapping("/api/clientes/{id}")
+    @ResponseBody
     public ResponseEntity delete(@PathVariable Integer id) {
 
         Optional<Cliente> cliente = clientes.findById(id);
@@ -86,10 +89,13 @@ public class ClienteController {
     }
 
     /*
-     * @RequestMapping --:> 
+     * @RequestMapping --> Anotação para mapear solicitações da web em métodos em classes 
+     * de tratamento de solicitações com assinaturas de método flexíveis.
+     * 
      * responseEntity --> e um objeto que ele representa o corpo da resposta
      * 
      * @RequestBody --> é quando a gente recebe uma requisição, ou seja, o que vai receber
+     * 
      * @ResonseBody --> é quando a gente retorna uma resposta, ou seja, o que vai retornar
      * 
      * noContent --> é quando vai retornar nada no corpo da requisição
